@@ -1,6 +1,6 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
-import AppLayout from "pages/AppLayout";
+import AppLayout from "ui/AppLayout";
 import Dashboard from "pages/Dashboard";
 import Bookings from "pages/Bookings";
 import Cabins from "pages/Cabins";
@@ -9,11 +9,22 @@ import Settings from "pages/Settings";
 import Account from "pages/Account";
 import Login from "pages/Login";
 import PageNotFound from "pages/PageNotFound";
+import GlobalStyles from "styles/global-styles";
 
 export const router = createBrowserRouter([
     {
-        element: <AppLayout />,
-        errorElement: <PageNotFound />,
+        element: (
+            <>
+                <GlobalStyles />
+                <AppLayout />
+            </>
+        ),
+        errorElement: (
+            <>
+                <GlobalStyles />
+                <PageNotFound />
+            </>
+        ),
         children: [
             {
                 index: true,
@@ -42,11 +53,11 @@ export const router = createBrowserRouter([
             {
                 path: "account",
                 element: <Account />
-            },
-            {
-                path: "/login",
-                element: <Login />
             }
         ]
+    },
+    {
+        path: "login",
+        element: <Login />
     }
 ]);
